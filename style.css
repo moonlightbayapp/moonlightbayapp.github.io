@@ -63,10 +63,10 @@ nav {
 .btn-download {
   border: 2px solid #00e5ff;
   color: #00e5ff !important;
-  padding: 5px 15px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 10px;
+  border-radius: 11px;
+  font-size: 14px;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -75,6 +75,7 @@ nav {
 .card { background: #333; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
