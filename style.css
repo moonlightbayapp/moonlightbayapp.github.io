@@ -184,6 +184,10 @@ input, textarea {
 }
 /* Tampilan Mobile Portrait */
 @media (max-width: 832px) {
+    container {
+        padding: 58px 11px;
+    }
+    
     nav {
         padding: 8px 4px;
     }
@@ -196,6 +200,10 @@ input, textarea {
         display: none;
     }
 
+    .grid-tv {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        
+}
     footer {
         background-color: #000000b3 !important;
         backdrop-filter: blur(7px);
@@ -237,10 +245,11 @@ input, textarea {
 }
 
 .container { padding: 58px 20px; max-width: 1200px; margin: auto; }
-.grid-tv { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 3px; }
+.grid-tv { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 23px 3px; }
 .card { padding: 1px; border-radius: 8px; font-size: 1.2rem; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
