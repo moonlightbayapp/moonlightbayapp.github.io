@@ -19,6 +19,8 @@ nav {
   justify-content: flex-start; /* Mengikuti gaya gambar yang rapat ke kiri */
   position: fixed; 
   top: 0; 
+  left: 0;
+  right: 0;
   z-index: 999;
   height: 60px; /* Memberikan ruang yang cukup */
 }
@@ -139,6 +141,7 @@ footer {
 .card { background: #333; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
