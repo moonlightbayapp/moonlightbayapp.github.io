@@ -66,23 +66,76 @@ nav.scrolled {
   margin-left: auto; /* Mendorong tombol ke ujung kanan */
 }
 
+/* Container Utama Dropdown */
+.nav-item.dropdown {
+    position: relative;
+}
+
+/* Sembunyikan menu secara default */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Muncul tepat di bawah navbar */
+    left: 0;
+    background-color: #111; /* Hitam pekat agar kontras */
+    min-width: 200px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 2px solid #00e5ff; /* Garis Cyan Khas MoonlightBay */
+    box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    z-index: 1000;
+}
+
+/* Tampilkan saat di-hover (Desktop) */
+.nav-item.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Styling Item di dalam Submenu */
+.dropdown-menu li {
+    border-bottom: 1px solid #222; /* Garis pemisah tipis */
+}
+
+.dropdown-menu li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-menu li a {
+    color: white;
+    padding: 12px 20px;
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+/* Efek saat menu dipilih/hover */
+.dropdown-menu li a:hover {
+    background-color: #1a1a1a;
+    color: #00e5ff;
+    padding-left: 25px; /* Sedikit efek geser */
+}
+
 .btn-download {
-  transition: 300ms;
-  -o-transition: 300ms;
-  -moz-transition: 300ms;
-  -webkit-transition: 300ms;
-  border: 2px solid #00e5ff;
-  color: #00e5ff !important;
-  padding: 10px;
-  border-radius: 11px;
-  font-family: Fira Sans Condensed;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
+    transition: 300ms;
+    -o-transition: 300ms;
+    -moz-transition: 300ms;
+    -webkit-transition: 300ms;
+    border: 2px solid #00e5ff;
+    color: #00e5ff !important;
+    padding: 10px;
+    border-radius: 11px;
+    font-family: Fira Sans Condensed;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .btn-download:hover {
-  border: 2px solid #00a1ff;
+    border: 2px solid #00a1ff;
 }
 
 /* Sembunyikan footer di Desktop */
@@ -249,6 +302,7 @@ input, textarea {
 .card { padding: 1px; border-radius: 8px; font-size: 1.2rem; text-align: center; cursor: pointer; transition: 0.3s; }
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; }
+
 
 
 
