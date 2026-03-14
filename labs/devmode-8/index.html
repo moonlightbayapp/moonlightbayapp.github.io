@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="utf-8">
+          <title>Radio Digital</title>
+          <meta name="description" content="Dengarkan Radio Digital dengan gratis dan praktis.">
+          <meta name="author" content="MoonlightBay Plus">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,">
+          <meta name="keywords" content="moonlightbay player, fm radio, am radio, sw radio, radio, radio streaming, radio player, streaming radio indonesia, radio online indonesia, prambors, genfm, iswara, mustangfm, mostradio, elshinta, sonora fm, jakarta, bandung, semarang, jogja, surabaya, bali" />
+          <link rel="apple-touch-icon" href="assets/img/Radio%20Icon.png">                
+          <meta name="apple-mobile-web-app-capable" content="yes">
+          <meta name="apple-mobile-web-app-status-bar-style" content="default">
+          <meta name="apple-mobile-web-app-title" content="Radio">
+          <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+          <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
+      <!-- Interface -->
+    <style>
+    body {
+      font-family: "SF Pro Display";
+      background-color: #000;
+      text-align: center;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+
+    .dark-mode {
+      background: #000;
+      color: #fff;
+      .screen {background-color: #1c1c1e !important;}
+      .dock {background-color: rgba(28, 28, 28, 0.45) !important;}
+      .btn {color: #ffff !important;}
+      .dropbtn {background: #1c1c1e; border: none !important;}
+      .dropbtn:hover {background-color: #464646 !important;}
+      .dropdown-content {background: rgba(42,42,42,0.87) !important;}
+      .dropdown-content a {color: white; !important;}
+      .dropdown-content i {color: white; !important;}
+      .dropdown a:hover {background-color: #4d4d4d;}
+      .toggle-dropdown {background: #3f3f3f; color: white !important;}
+      .toggle-dropdown:active {background-color: #3a3a3a; color: #fff !important;}
+      .channel-select {color: #ffff !important;}
+      select option {background-color: rgba(6, 6, 6, 0.75); color: #fff !important}
+      ::selection {color: #fff !important}
+      ::-moz-selection {color: #fff !important}
+    }
+
+    body.staticpage .wrappostarea {
+      margin-top: 0px;
+    }
+
+    .wrapping {  
+      padding: 0
+    }
+     
+    .headertop-wrap {
+      display: none;
+    }
+
+    .screen {
+      display: flex;
+      border-radius: 30px;
+      background-color: #1c1c1e;
+      height: 209px;
+      width: 95%;
+      margin: 20px auto;
+      justify-content: center;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .radio-branding {
+      position: absolute;
+      top: 34px;
+      left: 25px;
+      margin: 14px;
+      font-size: 35px;
+      font-weight: 800;
+    }
+
+    .channel-name {
+      font-family: SF Pro Display;
+      font-size: 30px;
+      font-weight: 600;
+    }
+  
+    .city-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  
+    audio {
+      display: none;
+    }
+
+    .btn {
+      margin: 7px;
+      padding: 6px 24px;
+      font-family: 'Montserrat', sans-serif;
+      border-radius: 6px;
+      border: none;
+      background: #48484a;
+      box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+      color: #DFDEDF;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+    }
+
+    .btn:active {
+      color: #0080ff;
+      transform: scale(0.9);
+      -webkit-color: #0080ff;
+      -webkit-transform: scale(0.9);
+    }
+
+    .dock {
+      display: flex;
+      gap: 4px;
+      background-color: rgba(28, 28, 28, 0.45) !important;
+      backdrop-filter: blur(7px);
+      border-radius: 38px;
+      padding: 20px;
+      box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0px 8px 0px rgb(140 140 140 / 50%), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
+      width: 330px;
+      max-width: 420px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .toggle-dropdown {
+      background: #3f3f3f;
+      margin: 0px;
+      color: white;
+      padding: 10px 15px;
+      font-family: "SF Pro Display";
+      font-weight: 500;
+      font-size: 17px;
+      border: none;
+      border-radius: 64px;
+      transition: transform 0.3s;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+
+    .toggle-dropdown:active {
+      background-color: #3a3a3a;
+      color: #0080ff;
+      transform: scale(0.9);
+      -webkit-color: #0080ff;
+      -webkit-transform: scale(0.9);
+    }
+
+    .channel-select {
+      text-align-last: center;
+      width: 100%;
+      height: 34px;
+      margin-top: 15px;
+      border-radius: 100px;
+      padding: 6px;
+      text-align: center;
+      font-family: "SF Pro Display";
+      font-size: 1rem;
+      appearance: none;
+      background-color: rgba(0, 0, 0, 0) !important;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      -webkit-appearance: none; /* Remove default dropdown arrow for custom styling */
+      -moz-appearance: none;
+      appearance: none;
+      border: 2px solid #ffff;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C197.6l-14.2%2C14.2l-123.6%2C-123.6l-123.6%2C123.6l-14.2%2C-14.2L146.4%2C63.2L287%2C197.6z%22%2F%3E%3C%2Fsvg%3E') !important; /* Custom arrow */
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      background-size: 12px;
+    }
+
+    .channel-select:focus {
+      outline: none;
+    }
+
+    select option {
+      backdrop-filter: blur(2px);
+      color: #000;
+      text-align: left;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 5px;
+      margin: 10px;
+      font-family: "Montserrat";
+      font-size: 14px;
+      font-weight: 200;
+    }
+        /* --- Media Queries untuk Orientasi Layar --- */
+    @media screen and (orientation: portrait) {
+        body {
+            min-height: 86vh;
+        }
+    
+        .radio-branding {
+            position: absolute;
+            top: 0px;
+            left: 5px;
+            margin: 14px;
+        }
+     
+        .screen {
+            width: 100%;
+        }
+        
+        .dropbtn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            font-size: 18px;
+            top: 10px;
+            right: 5px;
+        }
+     
+        .dropdown-content {
+            top: 52px;
+            right: 11px;
+        }
+    }
+        /* --- Penyempurnaan untuk pengguna iPhone 5/SE (2016) kebawah --- */
+    @media only screen and (max-width: 350px) {
+        .screen {
+            height: 188px;
+        }
+    
+        .freq-display {
+            font-size: 90px;
+        }
+     
+        .dock {
+            width: 100%;
+        }
+    }
+        /* --- Cocok untuk dijadikan tape mobil --- */
+    @media only screen and (max-height: 479px) {
+        body {
+            justify-content: flex-end;
+        }
+    
+        .radio-branding {
+            display: none;
+        }
+    
+        .screen {
+            height: 105px;
+            justify-content: center;
+        }
+    
+        .freq-display {
+            margin-left: 30px;
+            margin-top: 0px;
+            text-align: left;
+            font-size: 90px;
+        }
+    
+        .channel-name {
+            margin-top: 0px;
+        }
+     
+        .dock {
+            margin-bottom: 13px;
+        }
+    
+        .dropbtn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            font-size: 14px;
+            top: 0px;
+            right: 0px;
+        }
+     
+        .dropdown-content {
+            top: 40px;
+            right: 17px;
+        }
+    }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+            <div class="time-display" id="timeDisplay"></div>
+      <div class="signal-dots" id="signalBars">
+          <div class="signal-dot"></div>
+          <div class="signal-dot"></div>
+          <div class="signal-dot"></div>
+          <div class="signal-dot"></div>
+          <div class="signal-dot"></div>
+      </div>
+
+  <div class="screen">
+      <div class="band-type" id="bandTypeDisplay"></div>
+      <div class="channel-name" id="channelName">Loading channel...</div>
+      <div class="city-name" id="cityName">Loading city...</div>
+  </div>
+
+  <div class="dock">
+      <div class="controls">
+      <button class="btn" onclick="prevChannel()"><i class="fas fa-backward"></i></button>
+      <button class="btn" onclick="nextChannel()"><i class="fas fa-forward"></i></button>
+      </div>
+    <button class="toggle-dropdown" onclick="toggleChannelDropdown()">Select Stations</button>
+    <select id="channelDropdown" class="channel-select" onchange="selectChannelFromDropdown()">
+  </div>
+    <audio id="radioPlayer" controls autoplay>
+      <source id="audioSource" src="" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+  <div class="speaker-grill" id="speakerGrill">
+            </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.33/moment-timezone-with-data.min.js"></script>
+    <script>
+        const radioChannels = [
+    { name: "Select Channels", city: "", url: "5.5.5.5" },
+    { name: "MOONLIGHTBAY RADIO", city: "Jakarta", url: "https://stream.zeno.fm/0fzczoweasyvv" },
+    { name: "COLD CHILLIN FM", city: "Jakarta", url: "https://stream.zeno.fm/tjo1n2pika5uv" },
+    { name: "JAZZ ABE RADIO", city: "Jakarta", url: "https://stream.zeno.fm/crx79tt7cxhvv" },
+    { name: "URFAN RADIO", city: "Sukoharjo", url: "https://radio.urfan.id/" },
+    { name: "SUARA EDUKASI", city: "Jakarta", url: "https://radioedukasi.kemdikbud.go.id:9443/stream.mp3" },
+    { name: "TRAX", city: "Jakarta", url: "https://stream.radiojar.com/rrqf78p3bnzuv.mp3" },
+    { name: "BEAT", city: "Jakarta", url: "https://stream.beatradioid.com:8000/stream" },
+    { name: "KBR", city: "Jakarta", url: "https://i.klikhost.com/8056/kbr" },
+    { name: "COSMOPOLITAN", city: "Jakarta", url: "https://stream.radiojar.com/u7d8heq3bnzuv" },
+    { name: "RAYYA CHANNEL", city: "Jakarta", url: "https://radio.beta.noice.id/proxy?url=http%3A%2F%2F103.246.184.62%3A1935%2Fnoice_rayya%2Frayya.stream%2Fchunklist_w1931251962.m3u8" },
+    { name: "DREAMERS", city: "Jakarta", url: "https://live.dreamers.id:8443/live" },
+    { name: "LOKER MUSIK", city: "Jakarta", url: "https://stream.lokermusik.com/listen/lokermusik/lokermusik" },
+        ];
+
+        let currentIndex = 0;
+        let currentChannelTitle = "Memuat channel...";
+        let currentCityName = "Memuat kota...";
+        let noSignalTimeout;
+        let signalBarUpdateInterval;
+        const AUTO_SKIP_DELAY = 5000;
+        const SIGNAL_UPDATE_INTERVAL_MS = 500;
+
+        const MAX_BUFFERED_FOR_FULL_SIGNAL = 5;
+        const MIN_BUFFERED_FOR_ACTIVE_SIGNAL = 0.5;
+
+        const audioPlayer = document.getElementById("radioPlayer");
+        const audioSource = document.getElementById("audioSource");
+        const channelNameDisplay = document.getElementById("channelName");
+        const cityNameDisplay = document.getElementById("cityName");
+        const timeDisplay = document.getElementById("timeDisplay");
+        const currencyTickerText = document.getElementById('currencyTickerText');
+        const newsTickerText = document.getElementById('newsTickerText');
+        const ipodContainer = document.querySelector('.ipod-container');
+
+        const signalBarsContainer = document.getElementById("signalBars");
+        const signalBars = [];
+
+        // Elemen dropdown
+        const toggleDropdownBtn = document.querySelector('.toggle-dropdown-btn');
+        const channelDropdown = document.getElementById('channelDropdown');
+
+
+        for (let i = 1; i <= 10; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.setProperty('--i', i);
+            signalBarsContainer.appendChild(bar);
+            signalBars.push(bar);
+        }
+
+        function extractFrequency(name) {
+            const match = name.match(/^(\d+(\.\d+)?)/);
+            return match ? match[0] : '----';
+        }
+
+        function extractChannelTitle(name) {
+            return name.replace(/^(\d+(\.\d+)?)\s*/, "").trim();
+        }
+
+        function updateSignalBars(bufferedDuration) {
+            signalBars.forEach(bar => bar.classList.remove("active"));
+
+            const activeCount = Math.min(
+                signalBars.length,
+                Math.floor(bufferedDuration / (MAX_BUFFERED_FOR_FULL_SIGNAL / signalBars.length))
+            );
+
+            for (let i = 0; i < activeCount; i++) {
+                signalBars[i].classList.add("active");
+            }
+
+            if (bufferedDuration < MIN_BUFFERED_FOR_ACTIVE_SIGNAL && audioPlayer.src && !audioPlayer.paused && !audioPlayer.ended) {
+                signalBarsContainer.classList.add("red");
+            } else {
+                signalBarsContainer.classList.remove("red");
+            }
+        }
+
+        function loadChannel(index) {
+            if (noSignalTimeout) {
+                clearTimeout(noSignalTimeout);
+                noSignalTimeout = null;
+            }
+            if (signalBarUpdateInterval) {
+                clearInterval(signalBarUpdateInterval);
+                signalBarUpdateInterval = null;
+            }
+
+            currentIndex = index; // Pastikan currentIndex diupdate
+            const channel = radioChannels[currentIndex];
+            audioSource.src = channel.url;
+            
+            currentChannelTitle = extractChannelTitle(channel.name);
+            currentCityName = channel.city;
+            channelNameDisplay.textContent = currentChannelTitle;
+            cityNameDisplay.textContent = currentCityName;
+            
+            updateSignalBars(0);
+            
+            audioPlayer.load();
+            audioPlayer.play().catch(error => {
+                console.error("Autoplay failed:", error);
+                channelNameDisplay.textContent = "Press Play for start!";
+                cityNameDisplay.textContent = "";
+                updateSignalBars(0);
+                signalBarsContainer.classList.add("red");
+            });
+            updateMediaSession(currentChannelTitle, "");
+
+            // Pastikan dropdown kembali ke posisi awal dan sembunyi
+            if (channelDropdown.style.display !== 'none') {
+                channelDropdown.style.display = 'none';
+                toggleDropdownBtn.textContent = 'Select Stations'; // Reset teks tombol
+            }
+        }
+
+        function nextChannel() {
+            currentIndex = (currentIndex + 1) % radioChannels.length;
+            loadChannel(currentIndex);
+        }
+
+        function prevChannel() {
+            currentIndex = (currentIndex - 1 + radioChannels.length) % radioChannels.length;
+            loadChannel(currentIndex);
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                if (ipodContainer.requestFullscreen) {
+                    ipodContainer.requestFullscreen();
+                } else if (ipodContainer.mozRequestFullScreen) {
+                    ipodContainer.mozRequestFullScreen();
+                } else if (ipodContainer.webkitRequestFullscreen) {
+                    ipodContainer.webkitRequestFullscreen();
+                } else if (ipodContainer.msRequestFullscreen) {
+                    ipodContainer.msRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullScreen();
+                }
+            }
+        }
+
+        function updateMediaSession(title, songTitleText) {
+            if ('mediaSession' in navigator) {
+                navigator.mediaSession.metadata = new MediaMetadata({
+                    title: title,
+                    artist: "Radio Digital",
+                    album: "Radio",
+                    artwork: [{ src: "https://via.placeholder.com/96", sizes: "96x96", type: "image/png" }]
+                });
+
+                navigator.mediaSession.setActionHandler("previoustrack", prevChannel);
+                navigator.mediaSession.setActionHandler("nexttrack", nextChannel);
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            timeDisplay.textContent = `${hours}:${minutes}`;
+        }
+
+        // --- Event Listeners Audio Player ---
+        audioPlayer.addEventListener('waiting', () => {
+            channelNameDisplay.textContent = "scanning...";
+            cityNameDisplay.textContent = "";
+            updateSignalBars(0);
+            signalBarsContainer.classList.add("red");
+            
+            if (signalBarUpdateInterval) { clearInterval(signalBarUpdateInterval); signalBarUpdateInterval = null; }
+
+            if (!noSignalTimeout) {
+                noSignalTimeout = setTimeout(() => {
+                    console.warn("Tidak ada sinyal selama 5 detik, melompat ke channel berikutnya.");
+                    nextChannel();
+                }, AUTO_SKIP_DELAY);
+            }
+        });
+
+        audioPlayer.addEventListener('playing', () => {
+            if (noSignalTimeout) {
+                clearTimeout(noSignalTimeout);
+                noSignalTimeout = null;
+            }
+            signalBarsContainer.classList.remove("red");
+            channelNameDisplay.textContent = currentChannelTitle;
+            cityNameDisplay.textContent = currentCityName;
+
+            if (!signalBarUpdateInterval) {
+                signalBarUpdateInterval = setInterval(() => {
+                    if (audioPlayer.buffered.length > 0) {
+                        const bufferedEnd = audioPlayer.buffered.end(audioPlayer.buffered.length - 1);
+                        const bufferedDuration = bufferedEnd - audioPlayer.currentTime;
+                        updateSignalBars(bufferedDuration);
+                    } else {
+                        updateSignalBars(0);
+                    }
+                }, SIGNAL_UPDATE_INTERVAL_MS);
+            }
+        });
+
+        audioPlayer.addEventListener('error', () => {
+            console.error('Error saat memutar audio. Mungkin stream tidak tersedia atau URL salah.');
+            updateSignalBars(0);
+            signalBarsContainer.classList.add("red");
+            channelNameDisplay.textContent = "No Signal!";
+            cityNameDisplay.textContent = "";
+
+            if (signalBarUpdateInterval) { clearInterval(signalBarUpdateInterval); signalBarUpdateInterval = null; }
+
+            if (!noSignalTimeout) {
+                noSignalTimeout = setTimeout(() => {
+                    console.warn("Error sinyal selama 5 detik, melompat ke channel berikutnya.");
+                    nextChannel();
+                }, AUTO_SKIP_DELAY);
+            }
+        });
+
+        audioPlayer.addEventListener('ended', () => {
+            if (signalBarUpdateInterval) { clearInterval(signalBarUpdateInterval); signalBarUpdateInterval = null; }
+            updateSignalBars(0);
+        });
+        
+        audioPlayer.addEventListener('pause', () => {
+            if (signalBarUpdateInterval) { clearInterval(signalBarUpdateInterval); signalBarUpdateInterval = null; }
+            updateSignalBars(0);
+        });
+
+
+        // --- Fungsi Dropdown ---
+        function populateChannelDropdown() {
+            channelDropdown.innerHTML = '';
+            radioChannels.forEach((channel, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = `${extractChannelTitle(channel.name)} (${channel.city})`;
+                channelDropdown.appendChild(option);
+            });
+            channelDropdown.value = currentIndex;
+        }
+
+        function toggleChannelDropdown() {
+            if (channelDropdown.style.display === 'block') {
+                channelDropdown.style.display = 'none';
+                toggleDropdownBtn.textContent = 'Select Stations';
+            } else {
+                populateChannelDropdown();
+                channelDropdown.style.display = 'block';
+                toggleDropdownBtn.textContent = 'Hide Stations';
+                channelDropdown.focus();
+            }
+        }
+
+        function selectChannelFromDropdown() {
+            const selectedIndex = parseInt(channelDropdown.value);
+            if (!isNaN(selectedIndex)) {
+                loadChannel(selectedIndex);
+            }
+            channelDropdown.style.display = 'none';
+            toggleDropdownBtn.textContent = 'Select Stations';
+        }
+
+        // --- Inisialisasi ---
+        loadChannel(currentIndex);
+        populateChannelDropdown();
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // --- News Ticker (Berita Umum) ---
+        const rssUrlGlobalNews = 'https://rss2json.com/api.json?rss_url=https://news.google.com/rss?hl=id&gl=ID&ceid=ID:id';
+
+        fetch(rssUrlGlobalNews)
+            .then(response => response.json())
+            .then(data => {
+                const items = data.items.slice(0, 10);
+                const news = items.map(item => `<a href="${item.link}" target="_blank" style="color: inherit; text-decoration: none;">${item.title}</a>`).join(' ⸻ ');
+                newsTickerText.innerHTML = news + ' ⸻ ' + news;
+            })
+            .catch(err => {
+                console.error('Gagal memuat berita:', err);
+                newsTickerText.innerText = 'Gagal memuat berita.';
+            });
+
+        // --- News Ticker (Mata Uang) ---
+        const API_KEY = 'ff02e69277ba2c663c5bef63';
+        const BASE_CURRENCY = 'IDR';
+        const TARGET_CURRENCIES = [
+            "USD", "SGD", "MYR", "JPY", "SAR", "CNY"
+        ];
+
+        let previousRates = {};
+
+        async function fetchCurrencyRates() {
+            try {
+                const url = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/${BASE_CURRENCY}`;
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.result === 'success') {
+                    let currencyString = "";
+                    TARGET_CURRENCIES.forEach(currency => {
+                        const rate = data.conversion_rates[currency];
+                        if (rate) {
+                            const valueInIDR = (1 / rate).toFixed(2);
+                            let arrowHtml = '';
+
+                            if (previousRates[currency] !== undefined) {
+                                if (parseFloat(valueInIDR) > parseFloat(previousRates[currency])) {
+                                    arrowHtml = '<span class="currency-arrow up"></span>';
+                                } else if (parseFloat(valueInIDR) < parseFloat(previousRates[currency])) {
+                                    arrowHtml = '<span class="currency-arrow down"></span>';
+                                } else {
+                                    arrowHtml = '<span class="currency-arrow unchanged"></span>';
+                                }
+                            }
+                            previousRates[currency] = valueInIDR;
+
+                            currencyString += ` 1 ${currency} = ${valueInIDR} IDR ${arrowHtml} ⸻ `;
+                        }
+                    });
+                    currencyTickerText.innerHTML = currencyString.trim() + currencyString.trim();
+                } else {
+                    console.error("Gagal mengambil data nilai tukar:", data.result, data['error-type']);
+                    currencyTickerText.innerText = 'Gagal memuat nilai tukar: ' + (data['error-type'] || 'Terjadi kesalahan');
+                }
+            } catch (error) {
+                console.error("Kesalahan saat mengambil data nilai tukar:", error);
+                currencyTickerText.innerText = 'Gagal memuat nilai tukar (koneksi/API Key salah).';
+            }
+        }
+
+        fetchCurrencyRates();
+        setInterval(fetchCurrencyRates, 30 * 60 * 1000);
+    </script>
+
+</body>
+</html>
