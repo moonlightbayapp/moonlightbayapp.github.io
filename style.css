@@ -160,6 +160,11 @@ footer {
     display: none;
 }
 
+@keyframes iosMenuPop {
+      from { opacity: 0; transform: scale(0.9) translateY(-10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
 @keyframes cardHoverEffect {
     0% {
         transform: scale(1);
