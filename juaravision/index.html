@@ -249,18 +249,70 @@ background-color: var(--background-dark);
 ::-webkit-scrollbar-thumb:hover {
     background: #adabab; 
 }
+      
+#mobile-bottom-bar {
+    display: none;
+}
 
+/* Hanya muncul pada layar HP (Lebar maksimal 768px) */
+@media only screen and (max-width: 768px) {
+    #mobile-bottom-bar {
+        display: flex;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: linear-gradient(to top, rgba(0,0,0,1), rgba(10, 60, 124, 0.9)); /* Gradasi Biru Indovision */
+        border-top: 2px solid var(--accent-yellow);
+        z-index: 30; /* Di atas video tapi di bawah sidebar */
+        justify-content: space-around;
+        align-items: center;
+        padding-bottom: env(safe-area-inset-bottom); /* Support Notch iPhone */
+    }
+
+    .nav-btn {
+        background: none;
+        border: none;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        height: 100%;
+        transition: background 0.2s;
+    }
+
+    .nav-btn:active {
+        background: rgba(255, 195, 0, 0.2); /* Efek saat ditekan */
+    }
+
+    .nav-btn .icon {
+        font-size: 20px;
+        margin-bottom: 4px;
+    }
+
+    .nav-btn .label {
+        font-size: 10px;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: var(--accent-yellow);
+    }
+
+    /* Penyesuaian agar video tidak tertutup bar */
+    #tv-player {
+        height: calc(100% - 70px) !important;
+    }
+    
+    /* Geser OSD info sedikit ke atas agar tidak tertutup bar */
+    #channel-info-overlay {
+        bottom: 85px !important;
+        width: 90% !important;
+        margin-left: 5% !important;
+    }
+}
    </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XS00CDL5GD"></script>
-  <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XS00CDL5GD', {
-    'page_title': 'Watchman - MoonlightBay Plus'
-  });
-  </script>
 </head>
 <body class="prevent-select" oncontextmenu="return false;">
 
@@ -274,7 +326,26 @@ background-color: var(--background-dark);
             <button class="fullscreen-btn" id="fullscreen-btn"><i class="fa-solid fa-expand"></i></button>
             <div id="current-time">16:45:30 WIB</div>
         </div>
-
+        
+<div id="mobile-bottom-bar">
+    <button class="nav-btn" id="m-btn-prev">
+        <span class="icon">⏮</span>
+        <span class="label">Prev</span>
+    </button>
+    <button class="nav-btn" id="m-btn-list">
+        <span class="icon">☰</span>
+        <span class="label">List</span>
+    </button>
+    <button class="nav-btn" id="m-btn-info">
+        <span class="icon">ⓘ</span>
+        <span class="label">Info</span>
+    </button>
+    <button class="nav-btn" id="m-btn-next">
+        <span class="icon">⏭</span>
+        <span class="label">Next</span>
+    </button>
+</div>
+        
         <video id="tv-player" class="video-js vjs-default-skin" controls preload="auto">
             </video>
 
@@ -295,8 +366,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { number: 1, name: "TVRI Nasional", url: "https://op-group1-swiftservesd-1.dens.tv/s/s11/01.m3u8", program: "TVRI Nasional" },
         { number: 2, name: "TVRI JAKARTA", url: "https://ott-balancer.tvri.go.id/live/eds/DKI/hls/DKI.m3u8", program: "TVRI JAKARTA" },
         { number: 4, name: "TVRI Sport", url: "https://ott-balancer.tvri.go.id/live/eds/SportHD/hls/SportHD.m3u8", program: "TVRI Sport"},
-        { number: 5, name: "DAAI TV", url: "https://pull.daaiplus.com/live-DAAIPLUS/live-DAAIPLUS_SD.m3u8", program: "DAAI TV"},
         { number: 11, name: "KOMPAS TV HD", url: "https://op-group1-swiftservehd-1.dens.tv/s/s104/01.m3u8", program: "KOMPAS TV HD" },
+        { number: 12, name: "BTV HD", url: "https://btv.secureswiftcontent.com/han/btv/btv10005/srtoutput/hvideo-640x360.m3u8", program: "BTV HD" },
+        { number: 13, name: "BERITA SATU HD", url: "https://beritasatu.secureswiftcontent.com/han/beritasatu/bsatu10008/srtoutput/manifest.m3u8", program: "BERITA SATU HD" },
         { number: 16, name: "MDTV", url: "https://op-group1-swiftservehd-1.dens.tv/h/h223/02.m3u8", program: "MDTV" },
         { number: 17, name: "GARUDA TV HD", url: "https://hgmtv.com:19360/garudatvlivestreaming/576p.m3u8", program: "GARUDA TV HD" },
         { number: 19, name: "CNN INDONESIA HD", url: "https://live.cnnindonesia.com/livecnn/smil:cnntv.smil/index.m3u8", program: "CNN INDONESIA HD" },
@@ -310,10 +382,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { number: 37, name: "VTV HD", url: "https://flv.intechmedia.net/live/ch107.m3u8", program: "VTV HD" },
         { number: 38, name: "MAGNA CHANNEL", url: "https://edge.medcom.id/live-edge/smil:magna.smil/playlist.m3u8", program: "MAGNA CHANNEL" },
         { number: 45, name: "Jawapos TV", url: "https://jawapostv.siar.us/jawapostv/live/playlist.m3u8", program: "Jawapos TV" },
-        { number: 51, name: "BTV HD", url: "https://btv.secureswiftcontent.com/han/btv/btv10005/srtoutput/hvideo-640x360.m3u8", program: "BTV HD" },
-        { number: 52, name: "BERITA SATU HD", url: "https://beritasatu.secureswiftcontent.com/han/beritasatu/bsatu10008/srtoutput/manifest.m3u8", program: "BERITA SATU HD" },
         { number: 104, name: "JTV", url: "https://63b2dc7196c38.streamlock.net/JTVSURABAYA/_definst_/myStream/playlist.m3u8", program: "JTV" },
         { number: 106, name: "ASTHA TV", url: "https://hgmtv.com:19360/asthatv/720p.m3u8", program: "ASTHA TV" },
+        { number: 258, name: "DAAI TV", url: "https://pull.daaiplus.com/live-DAAIPLUS/live-DAAIPLUS_SD.m3u8", program: "DAAI TV"},
     ];
 
     let currentChannelIndex = 0;
@@ -329,7 +400,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const swipeThreshold = 50; // Jarak swipe minimal (dalam pixel)
     
     let infoTimeout;
+    const mBtnPrev = document.getElementById('m-btn-prev');
+    const mBtnList = document.getElementById('m-btn-list');
+    const mBtnInfo = document.getElementById('m-btn-info');
+    const mBtnNext = document.getElementById('m-btn-next');
 
+    if (mBtnPrev) {
+        mBtnPrev.addEventListener('click', (e) => {
+            e.stopPropagation(); // Mencegah konflik sentuhan lain
+            prevChannel();
+        });
+    }
+
+    if (mBtnNext) {
+        mBtnNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextChannel();
+        });
+    }
+
+    if (mBtnInfo) {
+        mBtnInfo.addEventListener('click', (e) => {
+            e.stopPropagation();
+            showInfoOverlay();
+        });
+    }
+
+    if (mBtnList) {
+        mBtnList.addEventListener('click', (e) => {
+            e.stopPropagation();
+            sidebar.classList.toggle('hidden');
+        });
+    }
     // --- FUNGSI INTI ---
 
     // Fungsi untuk memuat dan memutar saluran
