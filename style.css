@@ -17,6 +17,7 @@ nav {
   display: flex; 
   align-items: center; /* Menjaga logo & menu sejajar vertikal di tengah */
   justify-content: flex-start; /* Mengikuti gaya gambar yang rapat ke kiri */
+  transition: background 0.4s ease-in-out, backdrop-filter 0.4s ease-in-out;
   position: fixed; 
   top: 0; 
   left: 0;
