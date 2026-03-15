@@ -1,6 +1,5 @@
 const headContent = `
     <meta charset="UTF-8">
-    <meta name="google-site-verification" content="clNvY1DfOWNmd2a7CxH39qCq29N3GeQR8slWHkvkBGw" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no,">
     <meta name="description" content="All-in-One Live TV Channels Indonesia. JuaraVision successor.">
     <meta property="og:title" loaded="no" content="MoonlightBay Plus">
