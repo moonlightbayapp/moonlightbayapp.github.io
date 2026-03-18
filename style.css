@@ -317,6 +317,10 @@ input, textarea {
         flex: 1;
     }
 
+    footer .menu-item:hover {
+        color: #00e5ff; /* Warna highlight saat kursor nempel */
+    }
+
     footer .menu-item a {
         font-size: 0.75rem; /* Ukuran teks lebih proporsional */
         text-decoration: none;
