@@ -16,16 +16,6 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem('moonlightbay_migrated_ok', 'true');
         });
     }
-
-    // Fungsi saat tombol ditekkan
-    closeBtn.addEventListener('click', function() {
-        // Hilangkan pop-up
-        popup.classList.remove('show');
-        
-        // Simpan data di browser pengguna agar tidak muncul lagi besok-besok
-        localStorage.setItem('moonlightbay_migrated_ok', 'true');
-    });
-});
     // Memanggil file navbar.html dari root domain (/)
     fetch('/navbar.html')
     .then(response => response.text())
