@@ -1,13 +1,20 @@
 document.addEventListener("DOMContentLoaded", function() {
-const popup = document.getElementById('migrationPopup');
+    // --- 1. LOGIKA POP-UP ---
+    const popup = document.getElementById('migrationPopup');
     const closeBtn = document.getElementById('closePopupBtn');
     
     // Cek di Local Storage apakah user sudah pernah menekan tombol OK
-    if (!localStorage.getItem('moonlightbay_migrated_ok')) {
-        // Beri delay 1 detik setelah web selesai dimuat agar transisi terlihat elegan
-        setTimeout(() => {
-            popup.classList.add('show');
-        }, 1000);
+    if (popup && closeBtn) { // Safety check agar tidak error jika elemen tidak ada
+        if (!localStorage.getItem('moonlightbay_migrated_ok')) {
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 1000);
+        }
+
+        closeBtn.addEventListener('click', function() {
+            popup.classList.remove('show');
+            localStorage.setItem('moonlightbay_migrated_ok', 'true');
+        });
     }
 
     // Fungsi saat tombol ditekkan
