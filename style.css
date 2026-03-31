@@ -231,7 +231,7 @@ footer {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 100px 20px 40px; /* Padding top untuk ruang navbar */
+    padding: 33px 20px 40px; /* Padding top untuk ruang navbar */
     background: #0f0f0f;
 }
 
