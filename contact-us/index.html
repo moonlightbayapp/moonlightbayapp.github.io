@@ -8,12 +8,15 @@
 <body>
     <div id="navbar-placeholder"></div>
 
-    <div class="status-container contact-page">
-        <div class="contact-card">
+<div class="contact-page-wrapper">
+    <div class="contact-card">
+        <header class="contact-header">
             <h1>Hubungi Kami</h1>
             <p>Punya pertanyaan, saran, atau laporan channel rusak? Kirimkan pesan Anda di bawah ini.</p>
+        </header>
 
             <form action="https://formspree.io/f/meepkgzk" method="POST" class="contact-form">
+              <div class="form-row">
                 <div class="input-group">
                     <input type="text" name="name" placeholder="Nama Lengkap" required>
                 </div>
@@ -26,9 +29,9 @@
                 <button type="submit" class="btn-send">Kirim Pesan <i class="fa-solid fa-paper-plane"></i></button>
             </form>
 
-            <hr class="separator">
-
-            <h3>Ikuti Kami di Media Sosial</h3>
+            <div class="divider">
+                 <span>Atau melalui Media Sosial</span>
+            </div>
             <div class="social-grid">
                 <a href="https://www.facebook.com/moonlightbaytv" class="social-btn facebook"><i class="fa-brands fa-facebook"></i> @moonlightbaytv</a>
                 <a href="https://www.instagram.com/moonlightbay_tv" class="social-btn instagram"><i class="fa-brands fa-instagram"></i> @moonlightbay_tv</a>
