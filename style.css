@@ -343,7 +343,102 @@ input, textarea {
 .card:hover { border: 1px solid var(--accent); transform: scale(1.05); }
 .card img { width: 100%; border-radius: 5px; aspect-ratio: 16/9; }
 
+/* --- CSS Pop-up Pengumuman URL Baru --- */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px); /* Senada dengan efek navbar */
+    -webkit-backdrop-filter: blur(8px); /* Dukungan untuk iOS/Safari */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Memastikan pop-up menutupi semua elemen lain */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease-in-out;
+}
 
+/* Class pembantu untuk memunculkan pop-up dengan animasi */
+.popup-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-content {
+    background: linear-gradient(145deg, #1f1f1f, #121212);
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    color: #ffffff;
+    max-width: 400px;
+    width: 85%;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transform: translateY(30px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efek memantul halus */
+}
+
+.popup-overlay.show .popup-content {
+    transform: translateY(0) scale(1);
+}
+
+.popup-icon {
+    font-size: 45px;
+    color: #e50914; /* Aksen merah ala platform streaming */
+    margin-bottom: 15px;
+}
+
+.popup-content h2 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.popup-content p {
+    font-size: 15px;
+    color: #cccccc;
+    line-height: 1.5;
+}
+
+.new-url {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 17px;
+    color: #4da8da; /* Warna biru cerah agar link menonjol */
+    margin: 20px 0;
+    letter-spacing: 0.5px;
+    border: 1px dashed rgba(77, 168, 218, 0.4);
+}
+
+.popup-subtext {
+    font-size: 13px !important;
+    color: #888888 !important;
+    margin-bottom: 25px;
+}
+
+.popup-btn {
+    background: #e50914; 
+    color: #ffffff;
+    border: none;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+.popup-btn:hover {
+    background: #f40612;
+}
 
 
 
