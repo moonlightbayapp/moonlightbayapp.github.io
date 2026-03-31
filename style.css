@@ -221,6 +221,107 @@ footer {
     transition: 0.3s;
 }
 
+/* --- Style Halaman Contact Us --- */
+.contact-page {
+    padding-top: 100px !important;
+}
+
+.contact-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    max-width: 600px;
+    width: 90%;
+}
+
+.contact-form {
+    margin-top: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    border-color: #00d4ff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-send {
+    width: 100%;
+    padding: 15px;
+    background: #00d4ff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-send:hover {
+    background: #00e5ff;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.3);
+}
+
+.separator {
+    margin: 40px 0;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Social Media Buttons --- */
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.social-btn i { margin-right: 10px; font-size: 18px; }
+
+/* Brand Colors */
+.facebook { background: #1877F2; }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.threads { background: #000000; border: 1px solid #444; }
+.x-twitter { background: #000000; border: 1px solid #444; }
+.youtube { background: #FF0000; }
+.tiktok { background: #010101; border: 1px solid #444; }
+
+.social-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
+
+@media (max-width: 480px) {
+    .social-grid { grid-template-columns: 1fr; }
+}
 /* --- TEMA KHUSUS --- */
 
 /* Coming Soon (Cyan/Blue) */
