@@ -772,6 +772,19 @@
                     <p>> Engine Initialized...</p>
                 </div>
             </section>
+
+            <section class="dev-section">
+    <h3>Custom Stream Injector (Temporary)</h3>
+    <label>Test M3U/M3U8 URL:</label>
+    <input type="text" id="devStreamUrl" placeholder="https://.../stream.m3u8" 
+           style="width: 100%; padding: 8px; margin: 8px 0; background: #111; color: #00ff00; border: 1px solid #444; font-family: monospace; box-sizing: border-box;">
+    
+    <div class="dev-row">
+        <button onclick="injectTestStream()" style="background: #0080ff; color: white; border: none; padding: 8px 15px; cursor: pointer;">
+            PLAY ON 108.1 FM
+        </button>
+    </div>
+            </section>
         </div>
     </div>
 </div>
@@ -1504,6 +1517,54 @@ function addDevLog(msg) {
     const time = new Date().toLocaleTimeString();
     log.innerHTML += `<p>[${time}] > ${msg}</p>`;
     log.scrollTop = log.scrollHeight;
+}
+
+function injectTestStream() {
+    const urlInput = document.getElementById("devStreamUrl").value.trim();
+    
+    if (!urlInput) {
+        addDevLog("ERROR: URL tidak boleh kosong!");
+        return;
+    }
+
+    // 1. Cek apakah stasiun dummy 108.1 FM sudah ada di array
+    let testIndex = radioChannels.findIndex(ch => ch.name.includes("108.1"));
+
+    if (testIndex === -1) {
+        // Jika belum ada, PUSH (tambahkan) ke array sebagai stasiun baru
+        radioChannels.push({
+            name: "108.1 MHz - DEV TEST STREAM",
+            frequency: "108.1",
+            region: "Test Region",
+            url: urlInput
+        });
+        
+        // Dapatkan index stasiun yang baru saja dimasukkan (pasti di posisi paling akhir)
+        testIndex = radioChannels.length - 1;
+        addDevLog("✅ Stasiun 108.1 FM berhasil dibuat di memori.");
+    } else {
+        // Jika sudah ada (user ganti link saat Dev Mode masih buka), cukup UPDATE link-nya
+        radioChannels[testIndex].url = urlInput;
+        addDevLog("🔄 Link 108.1 FM berhasil di-update.");
+    }
+
+    // 2. Perbarui tampilan Dropdown Menu (opsional, jika fungsi ini global)
+    if (typeof populateChannelDropdown === "function") {
+        populateChannelDropdown();
+    }
+
+    // 3. Eksekusi: Paksa radio menyala jika sedang mati
+    if (!isPowerOn) {
+        togglePower(); 
+    }
+
+    // 4. Muat dan putar channel test tersebut
+    loadChannel(testIndex);
+    
+    addDevLog(`▶️ Memutar Test Stream: ${urlInput.substring(0, 30)}...`);
+    
+    // Opsional: Otomatis tutup Dev Mode agar bisa langsung lihat UI Player-nya
+    // closeDevMode(); 
 }
   </script>
 </body>
