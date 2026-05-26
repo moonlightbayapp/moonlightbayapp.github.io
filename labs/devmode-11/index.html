@@ -603,6 +603,27 @@
       outline: 0;
     }
 
+    .bitrate-select {
+      height: 34px;
+      border-radius: 100px;
+      padding: 4px;
+      padding-left: 12px;
+      padding-right: 30px;
+      font-family: "SF Pro Display";
+      background-color: #111;
+      color: #00ff00;
+      font-size: 16px;
+      cursor: pointer;
+      -webkit-appearance: none; /* Remove default dropdown arrow for custom styling */
+      -moz-appearance: none;
+      appearance: none;
+      border: 1px solid #444;
+      background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2C197.6l-14.2%2C14.2l-123.6%2C-123.6l-123.6%2C123.6l-14.2%2C-14.2L146.4%2C63.2L287%2C197.6z%22%2F%3E%3C%2Fsvg%3E') !important; /* Custom arrow */
+      background-repeat: no-repeat;
+      background-position: right 10px top 50%;
+      background-size: 12px;
+    }
+
     .log-container {
       background: #111;
       height: 100px;
@@ -777,7 +798,7 @@
             <section class="dev-section">
                 <h3>Audio Engine</h3>
                 <label>Bitrate Quality:</label>
-                <select id="devBitrate" onchange="changeBitrate(this.value)">
+                <select class="dev-dropdown" id="devBitrate" onchange="changeBitrate(this.value)">
                     <option value="64">64 kbps (Low)</option>
                     <option value="128" selected>128 kbps (Standard)</option>
                     <option value="192">192 kbps (High)</option>
