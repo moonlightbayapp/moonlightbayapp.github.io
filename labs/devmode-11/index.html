@@ -553,6 +553,53 @@
       font-family: 'SF Pro Display';
       font-size: small;
     }
+          
+    .dev-modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.9);
+      color: #00ff00; /* Green Terminal Look */
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .dev-content {
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .dev-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .dev-section {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px dashed #444;
+    }
+
+    .log-container {
+      background: #111;
+      height: 100px;
+      overflow-y: auto;
+      font-size: 12px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .close-btn {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 5px 15px;
+      cursor: pointer;
+    }
         /* --- Media Queries untuk Orientasi Layar --- */
     @media screen and (orientation: portrait) {
         body {
@@ -691,6 +738,43 @@
   </style>
 </head>
 <body class="prevent-select" ontouchstart="">
+      <!-- Developer Tools  -->
+<div id="devModal" class="dev-modal">
+    <div class="dev-content">
+        <div class="dev-header">
+            <h2>DEVELOPER TOOLS</h2>
+            <button onclick="closeDevMode()" class="close-btn">&times;</button>
+        </div>
+        
+        <div class="dev-body">
+            <section class="dev-section">
+                <h3>Radio Control (Mirror)</h3>
+                <div class="dev-row">
+                    <button id="devPlayBtn" onclick="devTogglePower()">FORCE PLAY</button>
+                    <button id="devPauseBtn" onclick="devTogglePower()">FORCE PAUSE</button>
+                </div>
+            </section>
+
+            <section class="dev-section">
+                <h3>Audio Engine</h3>
+                <label>Bitrate Quality:</label>
+                <select id="devBitrate" onchange="changeBitrate(this.value)">
+                    <option value="64">64 kbps (Low)</option>
+                    <option value="128" selected>128 kbps (Standard)</option>
+                    <option value="192">192 kbps (High)</option>
+                    <option value="320">320 kbps (Ultra)</option>
+                </select>
+            </section>
+
+            <section class="dev-section">
+                <h3>System Logs</h3>
+                <div id="devLog" class="log-container">
+                    <p>> Engine Initialized...</p>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
       <!-- Player -->
   <div class="radio-branding">Radio</div>
   <div class="dropdown">
@@ -1057,6 +1141,7 @@
 
     if (isPowerOn) {
         // Mode ON
+        console.log("Power Status: " + isPowerOn);
         powerBtn.style.color = "#0080ff";
         freqDisplay.style.opacity = "1";
         channelName.style.opacity = "1";
@@ -1082,6 +1167,10 @@
         }
     }
 
+    function openDevMode() {
+      document.getElementById("devModal").style.display = "block";
+    }
+            
     // Modifikasi fungsi loadChannel agar mengecek status power
     function loadChannel(index) {
       if (!isPowerOn) {
@@ -1389,6 +1478,30 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e =
             }
         }
     }
+}
+  </script>
+<!-- Developer Tools -->
+<script>
+function closeDevMode() {
+    document.getElementById("devModal").style.display = "none";
+}
+
+function devTogglePower() {
+    // Memanggil fungsi utama untuk simulasi user click
+    togglePower();
+    addDevLog("Power toggled from DevTools. Status: " + isPowerOn);
+}
+
+function changeBitrate(val) {
+    addDevLog("Bitrate switched to: " + val + "kbps");
+    // Di sini nanti bisa ditambahkan logika penggantian URL stream jika tersedia
+}
+
+function addDevLog(msg) {
+    const log = document.getElementById("devLog");
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `<p>[${time}] > ${msg}</p>`;
+    log.scrollTop = log.scrollHeight;
 }
   </script>
 </body>
