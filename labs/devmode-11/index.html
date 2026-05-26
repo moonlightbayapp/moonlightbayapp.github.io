@@ -321,6 +321,16 @@
       font-weight: 200;
     }
 
+    .report-missing {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background-color: #f2f2f2;
+      color: #000000;
+    }
+          
     .powerbtn {
       width: 40px;
       height: 40px;
@@ -828,6 +838,11 @@
         </div>
     </div>
 </div>
+
+<div id="ReportMissing" class="report-missing">
+  <div class="radio-branding">Missing Channel</div>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf6ilWI2sjcxMh-yXxE5saT7Z80UWlJqmXNl9nuRsiUOsTMLg/viewform?embedded=true" width="100%" height="1057" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>          
+</div>
       <!-- Player -->
   <div class="radio-branding">Radio</div>
   <div class="dropdown">
@@ -849,10 +864,10 @@
             <a href="javascript:void(0)" onclick="changeRegion('Batam / SG / MY')">Batam / SG / MY</a>
         </div>
          <div style="border-top: 0.5px solid rgba(128,128,128,0.2); margin: 5px 0;"></div>
-         <a href="/bugs/missing-radio/"><i class="fa fa-bug"></i><span>Report Bug</span></a>
+         <a onclick="openReportMissing()"><i class="fa fa-bug"></i><span>Report Bug</span></a>
          <div style="border-top: 0.5px solid rgba(128,128,128,0.2); margin: 5px 0;"></div>
          <a onclick="openDevMode()"><i class="fa fa-terminal"></i><span>Developer Mode</span></a> 
-         <div class="version-info">MoonlightBay Player (v1.0.5.3549)</div>
+         <div class="version-info">MoonlightBay Player (v1.0.5.3550)</div>
        </div>
      </div>
     <div class="controls">
