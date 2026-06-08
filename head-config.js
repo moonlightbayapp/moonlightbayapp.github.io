@@ -20,8 +20,8 @@ const headContent = `
     <meta content='yes' name='apple-mobile-web-app-capable'/>
     <meta content='default' name='apple-mobile-web-app-status-bar-style'/>
     <meta content='MoonlightBay Plus' name='apple-mobile-web-app-title'/>
-    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#1a1a1a">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#000000">
     
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
