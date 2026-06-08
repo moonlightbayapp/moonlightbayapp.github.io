@@ -25,6 +25,7 @@ nav {
   z-index: 999;
   height: 60px; /* Memberikan ruang yang cukup */
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  padding-top: max(8px, env(safe-area-inset-top));
 }
 
 nav.scrolled {
