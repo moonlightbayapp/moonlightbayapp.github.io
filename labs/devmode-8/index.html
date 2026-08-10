@@ -177,6 +177,46 @@
         .slider-item .fav-btn {
             width: 30px; height: 30px; font-size: 16px; top: 8px; right: 8px; border-width: 1px;
         }
+/* --- TAMPILAN MOBILE / PORTRAIT MODE --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px; /* Mengurangi jarak di pinggir layar */
+            }
+
+            /* Mengubah arah layout menjadi atas-bawah (Vertikal) */
+            .main-display {
+                flex-direction: column;
+                gap: 15px; 
+                text-align: center; /* Membuat teks rata tengah */
+            }
+
+            /* Memperkecil Artwork sekitar 5% (Dari 320px menjadi 300px) */
+            .artwork-wrapper {
+                width: 300px;
+                height: 300px;
+            }
+
+            /* Menyesuaikan ukuran teks agar pas dan rapi di layar HP */
+            .station-title { font-size: 2.2rem; }
+            .station-freq { font-size: 1.2rem; margin-bottom: 10px; }
+            .song-title { font-size: 1.5rem; }
+            .song-artist { font-size: 1.2rem; }
+
+            /* Menyesuaikan Slider Bawah (Menghapus Padding) */
+            .slider-section {
+                margin-top: 20px;
+            }
+            .slider-container {
+                padding-bottom: 0; /* Padding dihilangkan sesuai permintaan */
+                gap: 12px; /* Merapatkan sedikit jarak antar kotak radio */
+            }
+            
+            /* Sedikit memperkecil kotak radio di slider bawah agar lebih pas di HP */
+            .slider-item {
+                min-width: 110px;
+                height: 110px;
+            }
+        }
     </style>
 </head>
 <body>
