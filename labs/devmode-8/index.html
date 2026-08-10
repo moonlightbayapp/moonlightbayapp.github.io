@@ -187,6 +187,12 @@
         .slider-item .fav-btn {
             width: 30px; height: 30px; font-size: 16px; top: 8px; right: 8px; border-width: 1px;
         }
+              
+        .prevent-select {
+            -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }  
 /* --- TAMPILAN MOBILE / PORTRAIT MODE --- */
         @media (max-width: 768px) {
             body {
@@ -452,6 +458,7 @@
                 slider.scrollLeft += (event.deltaY * 3); // Mengubah scroll vertikal jadi horizontal
             });
         };
+
     </script>
 </body>
 </html>
