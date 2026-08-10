@@ -434,6 +434,13 @@
         window.onload = () => {
             loadFavorites();
             updateUI();
+
+            // --- FITUR SCROLL MOUSE TANPA SHIFT ---
+            const slider = document.getElementById('stationSlider');
+            slider.addEventListener('wheel', (event) => {
+                event.preventDefault(); // Mencegah layar ikut ter-scroll ke bawah
+                slider.scrollLeft += event.deltaY; // Mengubah scroll vertikal jadi horizontal
+            });
         };
     </script>
 </body>
