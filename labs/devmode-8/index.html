@@ -182,7 +182,6 @@
 
     <!-- Bagian Atas / Header -->
     <div class="header">
-        <h1>🌙 <strong>MoonlightBay</strong> Player DAB</h1>
         <div class="power-container">
             <span class="status-text" id="statusText">OFF</span>
             <button class="power-btn" id="powerBtn" onclick="togglePower()">⏻</button>
@@ -218,11 +217,11 @@
     <script>
         // Database Stasiun Radio Simulasi
         const stations = [
-            { id: "rri_pro2_jkt", name: "RRI PRO2 JAKARTA", freq: "12D", song: "Menghapus Jejakmu", artist: "Peterpan", img: "https://via.placeholder.com/400/1e1e1e/fff?text=RRI+PRO2", stream: "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3" },
-            { id: "prambors_jkt", name: "PRAMBORS", freq: "13C", song: "Sempurna", artist: "Andra and The Backbone", img: "https://via.placeholder.com/400/1e1e1e/fff?text=PRAMBORS", stream: "https://stream.rcs.revma.com/h77wwp48kxcwv" },
-            { id: "delta_fm", name: "DELTA FM", freq: "13C", song: "Kisah Kasih di Sekolah", artist: "Chrisye", img: "https://via.placeholder.com/400/1e1e1e/fff?text=DELTA+FM", stream: "https://s1.cloudmu.id/listen/delta_fm/stream" },
-            { id: "trax_fm", name: "ISWARA", freq: "11A", song: "Dekat Di Hati", artist: "RAN", img: "https://via.placeholder.com/400/1e1e1e/fff?text=ISWARA", stream: "https://n0a.radiojar.com/4ywdgup3bnzuv" },
-            { id: "hardrock_fm", name: "THE ROCKIN LIFE", freq: "11A", song: "Kehidupan", artist: "God Bless", img: "https://via.placeholder.com/400/1e1e1e/fff?text=HARD+ROCK", stream: "https://stream.radiojar.com/7csmg90fuqruv" }
+            { id: "rri_pro2_jkt", name: "RRI PRO2 JAKARTA", freq: "12D", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gRcwXDFa2ellcXe9MtAGlG7IezOZMmnSI3btpKBjPw&s", stream: "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3" },
+            { id: "prambors_jkt", name: "PRAMBORS", freq: "13C", img: "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp", stream: "https://stream.rcs.revma.com/h77wwp48kxcwv" },
+            { id: "delta_fm", name: "DELTA FM", freq: "13C", img: "https://images.noiceid.cc/catalog/300x300/content-1692789803987", stream: "https://s1.cloudmu.id/listen/delta_fm/stream" },
+            { id: "trax_fm", name: "ISWARA", freq: "11A", img: "https://static.mytuner.mobi/media/radios-150px/938/iswara-jakarta.3c482bf1.jpg", stream: "https://n0a.radiojar.com/4ywdgup3bnzuv" },
+            { id: "hardrock_fm", name: "THE ROCKIN LIFE", freq: "11A", img: "https://images-v2.noiceid.cc/catalog/300x300/content-1740736595278.webp", stream: "https://stream.radiojar.com/7csmg90fuqruv" }
         ];
 
         let isPowerOn = false;
