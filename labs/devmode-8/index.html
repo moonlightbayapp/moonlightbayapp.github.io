@@ -20,7 +20,7 @@
     body {
             background-color: #121212;
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "SF Pro Display";
             margin: 0;
             padding: 30px;
             display: flex;
@@ -58,21 +58,29 @@
             align-items: center;
             gap: 15px;
         }
-        .power-btn {
-            background: transparent;
-            border: 2px solid #555;
-            color: #555;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .power-btn.on {
+    .powerbtn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #dcdcdc;
+      color: #0080ff;
+      font-size: 27px;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      position: absolute;
+      top: 34px;
+      right: 77px;
+      display: flex;
+      cursor: pointer;
+      border: none;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animasi halus */
+    }
+
+    .powerbtn:hover {
+      background-color: #e6e6e6;
+    }
+        .powerbtn.on {
             color: #00ff88;
             border-color: #00ff88;
             box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
@@ -235,6 +243,7 @@
         <div class="power-container">
             <span class="status-text" id="statusText">OFF</span>
             <button class="power-btn" id="powerBtn" onclick="togglePower()">⏻</button>
+       <button class="powerbtn" id="powerBtn" onclick="togglePower()"><i class="fas fa-power-off"></i></button>
         </div>
     </div>
 
