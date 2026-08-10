@@ -220,10 +220,10 @@
     <script>
         // Database Stasiun Radio Simulasi
         const stations = [
-            { id: "rri_pro2_jkt", name: "RRI PRO2 JAKARTA", freq: "12D", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gRcwXDFa2ellcXe9MtAGlG7IezOZMmnSI3btpKBjPw&s", stream: "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3" },
-            { id: "prambors_jkt", name: "PRAMBORS", freq: "13C", img: "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp", stream: "https://stream.rcs.revma.com/h77wwp48kxcwv" },
             { id: "delta_fm", name: "DELTA FM", freq: "13C", img: "https://images.noiceid.cc/catalog/300x300/content-1692789803987", stream: "https://s1.cloudmu.id/listen/delta_fm/stream" },
             { id: "trax_fm", name: "ISWARA", freq: "11A", img: "https://static.mytuner.mobi/media/radios-150px/938/iswara-jakarta.3c482bf1.jpg", stream: "https://n0a.radiojar.com/4ywdgup3bnzuv" },
+            { id: "prambors_jkt", name: "PRAMBORS", freq: "13C", img: "https://images-v2.noiceid.cc/catalog/300x300/content-1720586939252.webp", stream: "https://stream.rcs.revma.com/h77wwp48kxcwv" },
+            { id: "rri_pro2_jkt", name: "RRI PRO2 JAKARTA", freq: "12D", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_gRcwXDFa2ellcXe9MtAGlG7IezOZMmnSI3btpKBjPw&s", stream: "https://stream-node1.rri.co.id/streaming/25/9025/rrijakartapro2.mp3" },
             { id: "hardrock_fm", name: "THE ROCKIN LIFE", freq: "11A", img: "https://images-v2.noiceid.cc/catalog/300x300/content-1740736595278.webp", stream: "https://stream.radiojar.com/7csmg90fuqruv" }
         ];
 
@@ -232,7 +232,6 @@
         let favorites = [];
 
         // --- SISTEM COOKIES ---
-        // Menggunakan localStorage sebagai pengganti document.cookie modern yang lebih aman dan mudah dikelola untuk Web App
         function loadFavorites() {
             const savedFavs = localStorage.getItem('moonlightDabFavs');
             if (savedFavs) {
@@ -249,9 +248,9 @@
 
             const index = favorites.indexOf(stationId);
             if (index > -1) {
-                favorites.splice(index, 1); // Hapus jika sudah ada
+                favorites.splice(index, 1);
             } else {
-                favorites.push(stationId); // Tambah jika belum ada
+                favorites.push(stationId);
             }
             saveFavorites();
             updateUI();
@@ -275,9 +274,11 @@
                 statusTxt.innerText = "ON";
                 infoPnl.classList.add('active');
                 
-                // Mulai memutar stasiun (Jika ada URL stream)
-                // audio.src = stations[currentStationIndex].stream;
-                // audio.play(); 
+                // PERBAIKAN 1: Tanda // sudah dihapus agar audio menyala
+                if (stations[currentStationIndex].stream !== "") {
+                    audio.src = stations[currentStationIndex].stream;
+                    audio.play().catch(error => console.log("Gagal memutar audio:", error));
+                }
                 
             } else {
                 pwrBtn.classList.remove('on');
@@ -285,8 +286,9 @@
                 statusTxt.innerText = "OFF";
                 infoPnl.classList.remove('active');
                 
-                // audio.pause();
-                // audio.src = "";
+                // PERBAIKAN 2: Tanda // sudah dihapus agar audio mati saat tombol OFF ditekan
+                audio.pause();
+                audio.src = "";
             }
         }
 
@@ -294,10 +296,17 @@
             currentStationIndex = index;
             updateUI();
             
-            // Jika radio dalam keadaan nyala, langsung putar stream stasiun baru
+            const audio = document.getElementById('radioAudio');
+            
+            // PERBAIKAN 3: Tanda // sudah dihapus agar audio langsung ganti saat artwork di-klik
             if (isPowerOn) {
-                // document.getElementById('radioAudio').src = stations[currentStationIndex].stream;
-                // document.getElementById('radioAudio').play();
+                audio.pause();
+                if (stations[currentStationIndex].stream !== "") {
+                    audio.src = stations[currentStationIndex].stream;
+                    audio.play().catch(error => console.log("Gagal memutar audio:", error));
+                } else {
+                    audio.src = "";
+                }
             }
         }
 
