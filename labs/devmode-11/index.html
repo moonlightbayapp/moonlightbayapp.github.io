@@ -585,13 +585,14 @@
     }
           
     .dev-modal {
+      overflow-y: auto;
       visibility: hidden;
       opacity: 0;
       position: fixed;
       z-index: 9999;
       left: 0; top: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.85);
+      background-color: rgba(0,0,0,0);
       color: #00ff00; /* Green Terminal Look */
       font-family: 'Courier New', Courier, monospace;
       transition: visibility 0s linear 0.3s, opacity 0.3s ease;
