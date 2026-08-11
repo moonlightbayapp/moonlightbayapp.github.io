@@ -18,7 +18,7 @@
       <!-- Interface -->
     <style>
     body {
-            background-color: #121212;
+            background-color: #000;
             color: #ffffff;
             font-family: "SF Pro Display";
             margin: 0;
@@ -242,6 +242,29 @@
                 height: 110px;
             }
         }
+        /* --- Penyempurnaan untuk pengguna iPhone 5/SE (2016) kebawah --- */
+    @media only screen and (max-width: 350px) {
+        .artwork-wrapper {
+            width: 240px;
+            height: 240px;
+        }
+    
+        .slider-instruction {
+            display: none;
+        }
+              
+        .song-title {
+            display: none;
+        }
+              
+        .song-artist {
+            display: none;
+        }
+        .slider-item {
+            width: 110px;
+            height: 110px;
+        }
+    }
     </style>
 </head>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XS00CDL5GD"></script>
